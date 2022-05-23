@@ -4,6 +4,7 @@ plugins {
     kotlin("plugin.serialization")
     id("com.android.library")
     id("dev.icerock.moko.kswift")
+    id("dev.icerock.mobile.multiplatform-network-generator")
 }
 
 version = "1.0"
@@ -37,7 +38,7 @@ kotlin {
                 api("dev.icerock.moko:mvvm-livedata:0.13.0")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
-                implementation("io.ktor:ktor-client-serialization:$ktorVersion")
+                implementation("dev.icerock.moko:network:0.17.0")
             }
         }
         val commonTest by getting {
@@ -86,4 +87,10 @@ android {
 
 kswift {
     install(dev.icerock.moko.kswift.plugin.feature.PlatformExtensionFunctionsFeature)
+}
+
+mokoNetwork {
+    spec("norris") {
+        inputSpec = file("src/openapi.yaml")
+    }
 }

@@ -1,0 +1,54 @@
+openapi: 3.0.0
+info:
+  title: API
+  version: v1
+servers:
+  - url: https://api.chucknorris.io
+    description: Production API
+paths:
+  /jokes/random:
+    get:
+      summary: Get random Chuck joke
+      tags:
+        - jokes
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Joke'
+
+components:
+  schemas:
+    Joke:
+      properties:
+        categories:
+          type: array
+          items:
+            type: string
+            example: "pets"
+        created_at:
+          type: string
+          example: "2020-01-05 13:42:26.447675"
+        icon_url:
+          type: string
+          example: "https://assets.chucknorris.host/img/avatar/chuck-norris.png"
+        id:
+          type: string
+          example: "iOjaUwiHRqOng84Ft0nPvw"
+        updated_at:
+          type: string
+          example: "2020-01-05 13:42:26.447675"
+        url:
+          type: string
+          example: "https://api.chucknorris.io/jokes/iOjaUwiHRqOng84Ft0nPvw"
+        value:
+          type: string
+          example: "Chuck Norris invented Kentucky Fried Chicken's famous secret recipe with eleven herbs and spices. But nobody ever mentions the twelfth ingredient: Fear."
+      required:
+        - value
+        - url
+        - id
+        - created_at
+        - updated_at
